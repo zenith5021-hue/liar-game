@@ -1,0 +1,242 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body,html{font-family:'Noto Sans KR',sans-serif;background:#4A90D9;}
+#wrap{background:#4A90D9;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px 12px 24px;position:relative;overflow:hidden;}
+.deco{position:absolute;pointer-events:none;border:3px solid rgba(255,255,255,0.18);border-radius:50%;}
+.d1{width:80px;height:80px;top:40px;left:10px;}
+.d2{width:50px;height:50px;transform:rotate(45deg);border-radius:8px;top:160px;right:14px;}
+.d3{width:65px;height:65px;border-radius:10px;transform:rotate(18deg);bottom:40px;right:10px;}
+.hdr{background:white;border:3px solid #111;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:9px;width:100%;max-width:400px;margin-bottom:12px;position:relative;z-index:2;}
+.hdr-ic{background:#e53935;color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;}
+.hdr h1{font-size:17px;font-weight:900;color:#111;flex:1;}
+.hdr h1 em{color:#1565C0;font-style:normal;}
+.hdr-back{background:white;border:2px solid #111;border-radius:7px;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.card{background:white;border:3px solid #111;border-radius:20px;padding:22px 18px;width:100%;max-width:400px;position:relative;z-index:2;}
+.slabel{font-size:16px;font-weight:900;margin-bottom:16px;}
+.slabel em{color:#E65100;font-style:normal;}
+.mode-badge{background:#4CAF50;color:white;border-radius:20px;padding:4px 14px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:12px;}
+.home-title{font-size:34px;font-weight:900;line-height:1.2;margin-bottom:6px;color:#111;text-align:center;}
+.home-sub{font-size:12px;color:#666;text-align:center;margin-bottom:22px;}
+.motto{background:#111;color:#FFD600;border-radius:8px;padding:8px 12px;font-size:11px;font-weight:700;text-align:center;margin-top:12px;line-height:1.5;}
+.copy{font-size:10px;color:#aaa;text-align:center;margin-top:10px;}
+.btn-r{background:#e53935;color:white;border:3px solid #111;border-radius:10px;padding:15px;font-size:17px;font-weight:900;width:100%;cursor:pointer;letter-spacing:1px;margin-top:8px;display:block;}
+.btn-y{background:#FFD600;color:#111;border:3px solid #111;border-radius:10px;padding:13px;font-size:14px;font-weight:700;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;}
+.btn-k{background:#111;color:white;border:none;border-radius:10px;padding:15px;font-size:15px;font-weight:700;width:100%;cursor:pointer;margin-top:12px;}
+.btn-bl{background:#1565C0;color:white;border:3px solid #111;border-radius:10px;padding:15px;font-size:17px;font-weight:900;width:100%;cursor:pointer;letter-spacing:1px;margin-top:12px;}
+.btn-out{background:white;color:#111;border:2px solid #111;border-radius:10px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;width:100%;}
+.sbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.sbtn{background:white;color:#555;border:1.5px solid #ccc;border-radius:8px;padding:9px;font-size:11px;font-weight:600;cursor:pointer;}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
+.pbtn{background:#F8BBD0;border:2px solid #111;border-radius:10px;padding:12px 4px;font-size:15px;font-weight:800;cursor:pointer;text-align:center;}
+.pbtn.sel{background:#1565C0;color:white;border-color:#0D47A1;}
+.tgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.tbtn{border:2.5px solid #111;border-radius:14px;padding:18px 8px 14px;font-size:13px;font-weight:800;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:7px;}
+.tbtn:nth-child(1){background:#DBEAFE;}
+.tbtn:nth-child(2){background:#DCFCE7;}
+.tbtn:nth-child(3){background:#FCE7F3;}
+.tbtn:nth-child(4){background:#FEF9C3;}
+.tbtn:nth-child(5){background:#E0F2FE;}
+.tbtn:nth-child(6){background:#F3E8FF;}
+.temoji{font-size:28px;}
+.rcard-wrap{border:3px solid #111;border-radius:16px;overflow:hidden;margin-bottom:14px;}
+.rhdr{background:#111;color:white;padding:9px;text-align:center;font-size:14px;font-weight:900;}
+.rbody{background:#FFFDE7;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;gap:10px;cursor:pointer;}
+.rbody.shown{background:white;cursor:default;}
+.rbody.liar-s{background:#FFF0F0;}
+.liar-txt{font-size:32px;font-weight:900;color:#e53935;font-style:italic;}
+.sw{font-size:26px;font-weight:900;color:#1565C0;}
+.cfm-btn{background:#111;color:white;border:none;padding:12px;font-size:14px;font-weight:700;width:100%;cursor:pointer;}
+.status-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.sitem{background:#E3F2FD;border:1.5px solid #90CAF9;border-radius:8px;padding:5px 9px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;}
+.sitem.done{background:#E8F5E9;border-color:#A5D6A7;}
+.sitem.cur{background:#FFF9C4;border-color:#FFD600;font-weight:900;}
+.ck{background:#4CAF50;color:white;border-radius:4px;padding:1px 5px;font-size:10px;font-weight:900;}
+.twrap{text-align:center;}
+.tlabel{background:#FFD600;border:3px solid #111;border-radius:8px;padding:7px 20px;font-size:18px;font-weight:900;display:inline-block;margin-bottom:20px;}
+.tcirc{width:150px;height:150px;border-radius:50%;border:6px solid #111;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;}
+.tnum{font-size:38px;font-weight:900;color:#1565C0;}
+.tsub{font-size:12px;color:#888;margin-bottom:20px;}
+.tbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.rules-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.ri{border-radius:10px;padding:12px 13px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;}
+.ri:nth-child(1){background:#EFF6FF;}
+.ri:nth-child(2){background:#FFF0F5;}
+.ri:nth-child(3){background:#F0FFF4;}
+.ri:nth-child(4){background:#FFFBEB;}
+.rn{background:#111;color:white;width:23px;height:23px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;}
+.res-box{background:#FFEBEE;border:2px solid #111;border-radius:16px;padding:20px;text-align:center;}
+.res-name{font-size:32px;font-weight:900;color:#e53935;margin-bottom:8px;}
+.abadge{background:white;border:2px solid #111;border-radius:8px;padding:5px 14px;display:inline-block;margin-top:4px;}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<div id="wrap">
+  <div class="deco d1"></div>
+  <div class="deco d2"></div>
+  <div class="deco d3"></div>
+  <div class="hdr" id="hdr">
+    <div class="hdr-ic">?</div>
+    <h1>초등학생 <em>라이어 게임</em></h1>
+    <button class="hdr-back" id="backBtn" style="display:none" onclick="goBack()">↺</button>
+  </div>
+  <div class="card" id="mc"></div>
+</div>
+<script>
+const TOPICS={
+  동물:{emoji:'🐶',words:['강아지','고양이','토끼','코끼리','기린','호랑이','원숭이','펭귄','독수리','돌고래']},
+  과일:{emoji:'🍎',words:['사과','바나나','딸기','포도','수박','복숭아','오렌지','키위','망고','체리']},
+  직업:{emoji:'👮',words:['의사','선생님','소방관','경찰관','요리사','화가','가수','운동선수','과학자','배우']},
+  장소:{emoji:'🏫',words:['학교','도서관','병원','공원','수영장','마트','영화관','박물관','놀이터','카페']},
+  음식:{emoji:'🍕',words:['피자','짜장면','비빔밥','김치찌개','라면','삼겹살','초밥','떡볶이','치킨','파스타']},
+  '도덕적 가치':{emoji:'💛',words:['사랑','희망','용기','노력','봉사','정직','배려','감사','책임','친절']}
+};
+let S={screen:'home',playerCount:4,topic:'',secretWord:'',liarIndex:-1,currentPlayer:0,confirmedPlayers:[],timerVal:180,timerRunning:false,timerInterval:null,histStack:[],shown:{}};
+function goBack(){
+  if(S.histStack.length>0){
+    if(S.timerInterval)clearInterval(S.timerInterval);
+    S.screen=S.histStack.pop();render();
+  }
+}
+function push(sc){S.histStack.push(S.screen);S.screen=sc;render();}
+function render(){
+  document.getElementById('backBtn').style.display=S.histStack.length>0?'flex':'none';
+  ({home:rHome,rules:rRules,step1:rStep1,step2:rStep2,reveal:rReveal,timer:rTimer,result:rResult})[S.screen]();
+}
+function rHome(){
+  document.getElementById('mc').innerHTML=`
+    <div style="text-align:center;padding:4px 0 10px">
+      <div class="mode-badge">학습 모드</div>
+      <div class="home-title"><span style="text-decoration:underline wavy;text-decoration-color:#FFD600">거짓말쟁이는</span><br>누구?</div>
+      <p class="home-sub">눈치 코치 백단! 라이어를 찾아보세요.</p>
+      <button class="btn-r" onclick="push('step1')">게임  시작!</button>
+      <button class="btn-y" onclick="push('rules')">ⓘ 게임 방법 알아보기</button>
+      <div class="sbtns">
+        <button class="sbtn" onclick="alert('React(MIT), Framer Motion(MIT), Tailwind CSS(MIT)')">오픈소스 라이선스</button>
+        <button class="sbtn" onclick="alert('본 서비스는 어떠한 개인정보도 수집, 저장, 전송하지 않습니다. 모든 게임 데이터는 브라우저 내에서만 처리됩니다.')">개인정보처리방침</button>
+      </div>
+      <div class="motto">통계가 더해지면 미신은 과학이 됩니다.</div>
+      <p class="copy">© 2026. 이영직 선생님 모든 권리 보유.</p>
+    </div>`;
+}
+function rRules(){
+  document.getElementById('mc').innerHTML=`
+    <div class="slabel" style="color:#E65100">규칙. 어떻게 하나요?</div>
+    <div class="rules-list">
+      <div class="ri"><div class="rn">1</div>인원수와 주제를 정해요.</div>
+      <div class="ri"><div class="rn">2</div>한 명씩 차례대로 정체를 확인해요.</div>
+      <div class="ri"><div class="rn">3</div>제시어에 대해 한 마디씩 설명해요.</div>
+      <div class="ri"><div class="rn">4</div>라이어는 정체를 숨기고 연기하세요!</div>
+    </div>
+    <button class="btn-k" onclick="push('step1')">알겠어요!</button>`;
+}
+function rStep1(){
+  const nums=[3,4,5,6,7,8,9,10];
+  document.getElementById('mc').innerHTML=`
+    <div class="slabel"><em>단계 1.</em> 인원 설정</div>
+    <div class="pgrid">${nums.map(n=>`<button class="pbtn${n===S.playerCount?' sel':''}" onclick="selP(${n})">${n}명</button>`).join('')}</div>
+    <button class="btn-r" onclick="push('step2')">다음 단계</button>`;
+}
+function selP(n){S.playerCount=n;rStep1();}
+function rStep2(){
+  const ts=Object.keys(TOPICS);
+  document.getElementById('mc').innerHTML=`
+    <div class="slabel"><em>단계 2.</em> 주제 선택</div>
+    <div class="tgrid">${ts.map(t=>`<button class="tbtn" onclick="selT('${t}')"><span class="temoji">${TOPICS[t].emoji}</span><span>${t}</span></button>`).join('')}</div>`;
+}
+function selT(t){
+  S.topic=t;
+  const ws=TOPICS[t].words;
+  S.secretWord=ws[Math.floor(Math.random()*ws.length)];
+  S.liarIndex=Math.floor(Math.random()*S.playerCount);
+  S.currentPlayer=0;S.confirmedPlayers=[];S.shown={};
+  push('reveal');
+}
+function rReveal(){
+  const p=S.currentPlayer,isLiar=p===S.liarIndex,shown=S.shown[p];
+  document.getElementById('mc').innerHTML=`
+    <div class="slabel" style="text-align:center;font-size:15px">${p+1}번 친구 차례!</div>
+    <div class="status-row">${Array.from({length:S.playerCount},(_,i)=>`
+      <div class="sitem${S.confirmedPlayers.includes(i)?' done':i===p?' cur':''}">
+        P${i+1}${S.confirmedPlayers.includes(i)?'<span class="ck">✓</span>':''}
+      </div>`).join('')}
+    </div>
+    <div class="rcard-wrap">
+      <div class="rhdr">${p+1}번 친구 확인!</div>
+      ${shown?`
+        <div class="rbody shown${isLiar?' liar-s':''}">
+          ${isLiar?`
+            <div class="liar-txt">라이어!!</div>
+            <div style="font-size:12px;color:#777;margin-top:4px">주제: ${TOPICS[S.topic].emoji} ${S.topic}</div>
+            <div style="font-size:13px;font-weight:700;margin-top:4px">정체를 들키지 마세요!</div>
+          `:`
+            <div style="font-size:12px;color:#888">비밀 단어</div>
+            <div class="sw">${S.secretWord}</div>
+            <div style="font-size:13px;color:#555;font-weight:600">당신은 시민입니다.</div>
+          `}
+        </div>
+        <button class="cfm-btn" onclick="cfmP(${p})">확인했어요!</button>
+      `:`
+        <div class="rbody" onclick="showC(${p})">
+          <div style="font-size:42px">👁</div>
+          <div style="font-size:14px;font-weight:700;color:#555">화면을 터치하여 확인</div>
+        </div>
+      `}
+    </div>`;
+}
+function showC(p){S.shown[p]=true;rReveal();}
+function cfmP(p){
+  S.shown[p]=false;S.confirmedPlayers.push(p);
+  if(p+1<S.playerCount){S.currentPlayer=p+1;rReveal();}
+  else{S.timerVal=180;S.timerRunning=false;if(S.timerInterval)clearInterval(S.timerInterval);push('timer');startTimer();}
+}
+function rTimer(){
+  const m=Math.floor(S.timerVal/60),sc=S.timerVal%60;
+  document.getElementById('mc').innerHTML=`
+    <div class="twrap">
+      <div class="tlabel">토론 시간!!</div>
+      <div class="tcirc"><span class="tnum">${m}:${sc<10?'0'+sc:sc}</span></div>
+      <div class="tsub">남은 시간</div>
+      <div class="tbtns">
+        <button class="btn-out" onclick="toggleT()">${S.timerRunning?'⏸ 일시정지':'▶ 재개'}</button>
+        <button class="btn-r" style="margin:0;font-size:14px;padding:12px" onclick="push('result')">결과 확인!</button>
+      </div>
+    </div>`;
+}
+function startTimer(){
+  S.timerRunning=true;
+  S.timerInterval=setInterval(()=>{
+    if(S.screen!=='timer'){clearInterval(S.timerInterval);return;}
+    S.timerVal--;
+    if(S.timerVal<=0){clearInterval(S.timerInterval);S.timerVal=0;push('result');return;}
+    rTimer();
+  },1000);
+}
+function toggleT(){
+  if(S.timerRunning){clearInterval(S.timerInterval);S.timerRunning=false;}
+  else startTimer();
+  rTimer();
+}
+function rResult(){
+  if(S.timerInterval)clearInterval(S.timerInterval);
+  document.getElementById('mc').innerHTML=`
+    <div style="text-align:center;padding:4px 0">
+      <div style="font-size:40px;margin-bottom:8px">⚠️</div>
+      <div style="font-size:14px;color:#555;margin-bottom:14px">라이어는 바로...</div>
+      <div class="res-box">
+        <div class="res-name">플레이어 ${S.liarIndex+1}</div>
+        <div class="abadge">
+          <div style="font-size:11px;color:#888">정답 단어</div>
+          <div style="font-size:18px;font-weight:900;color:#1565C0">${S.secretWord}</div>
+        </div>
+      </div>
+      <button class="btn-bl" onclick="resetGame()">다시 하기!!</button>
+    </div>`;
+}
+function resetGame(){
+  if(S.timerInterval)clearInterval(S.timerInterval);
+  const pc=S.playerCount;
+  S={screen:'step1',playerCount:pc,topic:'',secretWord:'',liarIndex:-1,currentPlayer:0,confirmedPlayers:[],timerVal:180,timerRunning:false,timerInterval:null,histStack:['home'],shown:{}};
+  render();
+}
+render();
+</script>
